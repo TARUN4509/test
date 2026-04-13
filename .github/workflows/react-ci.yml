@@ -2,30 +2,30 @@ name: CI
 
 on:
 push:
-branches: ["main"]        # ✅ fixed
+branches: ["main"]
 pull_request:
-branches: ["main"]        # ✅ fixed
+branches: ["main"]
 
 jobs:
 build:
-runs-on: ubuntu-latest    # ✅ fixed
+runs-on: ubuntu-latest
 
 ```
-step:                     # ❌ still wrong (should be 'steps')
+step:   # ❌ ONLY ERROR (should be 'steps')
   - name: Checkout repository
-    uses: actions/checkout@v4   # ✅ fixed
+    uses: actions/checkout@v4
 
   - name: Setup Node.js
     uses: actions/setup-node@v4
     with:
-      node-version: "18"        # ⚠️ works but better without quotes
+      node-version: 18
 
   - name: Install dependencies
-    run: npm install ci         # ❌ still wrong
+    run: npm ci
 
   - name: Type check (TS)
-    run: npm build              # ❌ still wrong
+    run: npm run build --if-present
 
   - name: Build project
-    run: npm run start          # ❌ still wrong
+    run: npm run build
 ```
