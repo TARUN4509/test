@@ -18,7 +18,7 @@ step:             # ❌ should be 'steps'
   - name: Setup Node.js
     uses: actions/setup-node@v4
     with:
-      node-version: "eighteen"   # ❌ invalid version format
+      node-version: "18"   # ❌ invalid version format
 
   - name: Install dependencies
     run: npm install ci   # ❌ wrong command
