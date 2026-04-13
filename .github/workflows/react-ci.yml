@@ -2,30 +2,30 @@ name: CI
 
 on:
 push:
-branch: ["main"]   # ❌ wrong keyword (should be 'branches')
+branches: ["main"]        # ✅ fixed
 pull_request:
-branches: "main"   # ❌ should be array format
+branches: ["main"]        # ✅ fixed
 
 jobs:
 build:
-runs-on: ubuntu   # ❌ invalid runner (should be ubuntu-latest)
+runs-on: ubuntu-latest    # ✅ fixed
 
 ```
-step:             # ❌ should be 'steps'
+step:                     # ❌ still wrong (should be 'steps')
   - name: Checkout repository
-    uses: action/checkout@v4   # ❌ wrong action name (missing 's')
+    uses: actions/checkout@v4   # ✅ fixed
 
   - name: Setup Node.js
     uses: actions/setup-node@v4
     with:
-      node-version: "18"   # ❌ invalid version format
+      node-version: "18"        # ⚠️ works but better without quotes
 
   - name: Install dependencies
-    run: npm install ci   # ❌ wrong command
+    run: npm install ci         # ❌ still wrong
 
   - name: Type check (TS)
-    run: npm build        # ❌ incorrect script command
+    run: npm build              # ❌ still wrong
 
   - name: Build project
-    run: npm run start    # ❌ wrong step for build
+    run: npm run start          # ❌ still wrong
 ```
